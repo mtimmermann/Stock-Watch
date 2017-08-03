@@ -1,6 +1,6 @@
 'use strict';
 
-var App = App || {};
+var app = app || {};
 var Highcharts = Highcharts || {};
 
 
@@ -215,8 +215,9 @@ Highcharts.theme = {
 
 (function ($) {
 
-	App.setHighChartTheme = function() {
+	app.setHighChartTheme = function() {
 		// Apply the theme
 		Highcharts.setOptions(Highcharts.theme);
 	};
-}(jQuery, App));
+
+}(jQuery, app));

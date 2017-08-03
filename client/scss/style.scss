@@ -2,8 +2,15 @@
 @import "bootstrap";
 
 section {
+
+  &.container {
+    background-color: #3e3e40;
+  }
+
   .stocks-container {
     padding-top: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
 
     .stock-block {
       border: 1px solid #bbb;

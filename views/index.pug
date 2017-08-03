@@ -12,12 +12,14 @@ block content
         - var classes = ['col-md-4', 'col-sm-6', 'stock-block', 'stock-new']
         div(class=classes)
           label Add Stock Code
-          form(novalidate)
-            div(class='input-group')
-              input(type='text' class='form-control' placeholder='Stock Code')
-              span(class='input-group-btn')
-                - var classes = ['btn', 'btn-success', type='submit']
-                button(class=classes type='submit') Add
+          //- form(novalidate onsubmit='return false;')
+          //- form(novalidate)
+          div(class='input-group')
+            input(type='text' class='form-control' placeholder='Stock Code')
+            span(class='input-group-btn')
+              - var classes = ['btn', 'btn-success', type='submit']
+              //- button(class=classes type='submit' onlick='alert("test");app.addName();') Add
+              button(class=classes type='button' onlick='alert("test");app.addName();') Add
 
   script(src='/js/dependencies/highcharts/highstock.js')
   script(src='/js/dependencies/highcharts/exporting.js')

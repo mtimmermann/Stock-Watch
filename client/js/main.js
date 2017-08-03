@@ -1,6 +1,6 @@
 'use strict';
 
-var App = App || {};
+var app = app || {};
 var Highcharts = Highcharts || {};
 
 (function ($) {
@@ -8,7 +8,8 @@ var Highcharts = Highcharts || {};
   var seriesOptions = null,
       names = ['MSFT', 'AAPL', 'GOOG'];
 
-  App.addName = function(name) {
+  app.addName = function(name) {
+console.log('name: '+ name);
     if (names.indexOf(name) === -1) {
       names.push(name);
 console.log('names: '+ names);
@@ -75,7 +76,7 @@ console.log('names: '+ names);
       });
   }
 
-  App.init = function () {
+  app.init = function () {
 
     // Initialize the series option array
     seriesOptions = [];
@@ -98,9 +99,9 @@ console.log('names: '+ names);
     });
   };
 
-}(jQuery, App));
+}(jQuery, app));
 
 (function() {
-  App.init();
-  App.setHighChartTheme();
+  app.init();
+  app.setHighChartTheme();
 })();
