@@ -1,6 +1,7 @@
 'use strict';
 
 var App = App || {};
+var Highcharts = Highcharts || {};
 
 
 /* global document */
@@ -217,5 +218,5 @@ Highcharts.theme = {
 	App.setHighChartTheme = function() {
 		// Apply the theme
 		Highcharts.setOptions(Highcharts.theme);
-	}
+	};
 }(jQuery, App));

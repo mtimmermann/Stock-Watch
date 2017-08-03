@@ -1,6 +1,7 @@
 'use strict';
 
 var App = App || {};
+var Highcharts = Highcharts || {};
 
 (function ($) {
 
@@ -12,7 +13,7 @@ var App = App || {};
       names.push(name);
 console.log('names: '+ names);
     }
-  }
+  };
 
   /**
    * Create the chart when all data is loaded
@@ -95,7 +96,7 @@ console.log('names: '+ names);
         }
       });
     });
-  }
+  };
 
 }(jQuery, App));
 
