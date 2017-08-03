@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
   var jsLibs = [
     'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/bootstrap-sass/javascripts/js/bootstrap.min.js'
+    'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js'
   ];
 
   var jsApp = ['client/js/*.js'];
