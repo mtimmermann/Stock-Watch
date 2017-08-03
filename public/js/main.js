@@ -4,26 +4,32 @@ var App = App || {};
 
 (function ($) {
 
-	var seriesOptions = [],
-	    seriesCounter = 0,
-	    names = ['MSFT', 'AAPL', 'GOOG'];
+  var seriesOptions = null,
+      names = ['MSFT', 'AAPL', 'GOOG'];
 
-	/**
-	 * Create the chart when all data is loaded
-	 * @returns {undefined}
-	 */
-	function createChart() {
+  App.addName = function(name) {
+    if (names.indexOf(name) === -1) {
+      names.push(name);
+console.log('names: '+ names);
+    }
+  }
+
+  /**
+   * Create the chart when all data is loaded
+   * @returns {undefined}
+   */
+  function createChart() {
 
     Highcharts.stockChart('container-chart', {
 
       rangeSelector: {
-      	selected: 4
+        selected: 4
       },
 
       yAxis: {
         labels: {
           formatter: function () {
-          	return (this.value > 0 ? ' + ' : '') + this.value + '%';
+            return (this.value > 0 ? ' + ' : '') + this.value + '%';
           }
         },
         plotLines: [{
@@ -48,39 +54,52 @@ var App = App || {};
 
       series: seriesOptions
     });
-	}
+  }
 
-	App.init = function () {
-		$.each(names, function (i, name) {
+  function getData(name, callback) {
 
+    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' +
+          name.toLowerCase() + '-c.json&callback=?'
+      ).done(function(data) {
 
-	    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' +
-	    		name.toLowerCase() + '-c.json&callback=?',
-		    function (data) {
+        seriesOptions.push({
+          name: name,
+          data: data
+        });
 
-if (i === 0) {
-  console.log('data: '+ JSON.stringify(data, null, ' '));
-}
+        callback(null);
+      })
+      .fail(function(jqxhr, textStatus, error) {
+        callback(error);
+      });
+  }
 
-	        seriesOptions[i] = {
-	            name: name,
-	            data: data
-	        };
+  App.init = function () {
 
-	        // As we're loading the data asynchronously, we don't know what order it will arrive. So
-	        //  we keep a counter and create the chart when all the data is loaded.
-	        seriesCounter += 1;
+    // Initialize the series option array
+    seriesOptions = [];
 
-	        if (seriesCounter === names.length) {
-	        	createChart();
-	        }
-		    });
-		});
-	}
+    var nameCount = 0;
+    $.each(names, function (i, name) {
+      getData(name, function(err) {
+        nameCount += 1;
+        if (err) {  
+          console.log(name + ' error '+ err);
+        } else {
+          console.log(name + ' Success');
+        }
+
+        // Create chart after all async calls have completed
+        if (nameCount === names.length) {
+          createChart();
+        }
+      });
+    });
+  }
 
 }(jQuery, App));
 
 (function() {
-	App.init();
+  App.init();
   App.setHighChartTheme();
 })();
