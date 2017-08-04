@@ -51,7 +51,7 @@ module.exports = function(grunt) {
     // https://stackoverflow.com/questions/41067220/using-babel-grunt-to-work-with-es6-how-to-transform-require-statements
     // npm install --save-dev babel-cli babel-preset-es2015
     browserify: {
-      build: {
+      main: {
         options: {
           transform: [['babelify', { presets: ['es2015', 'react'] }]],
           browserifyOptions: {
@@ -130,7 +130,6 @@ module.exports = function(grunt) {
           'public/css/style.css': 'client/scss/style.scss'
         }
       }
-
     },
 
     watch: {
@@ -148,7 +147,6 @@ module.exports = function(grunt) {
       }
     }
 
-
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -159,11 +157,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  //grunt.registerTask('default', ['jshint', 'clean', 'copy', 'uglify:dev', 'sass:dev']);
-  //grunt.registerTask('default', ['clean', 'copy', 'uglify:dev', 'react', 'sass:dev']);
-  //grunt.registerTask('build', ['jshint', 'clean', 'copy', 'uglify:build', 'react', 'sass:build']);
-
-
-  //grunt.registerTask('default', ['clean', 'copy', 'uglify:dev', 'uglify:react_jsx', 'react', 'sass:dev']);
-  grunt.registerTask('default', ['clean', 'copy', 'browserify:build', 'uglify:dev', 'uglify:dev_react_jsx', 'sass:dev']);
+  grunt.registerTask('default', ['jshint', 'clean', 'copy', 'browserify', 'uglify:dev', 'uglify:dev_react_jsx', 'sass:dev']);
+  grunt.registerTask('build', ['jshint', 'clean', 'copy', 'browserify', 'uglify:build', 'uglify:build_react_jsx', 'sass:dev']);
 };
