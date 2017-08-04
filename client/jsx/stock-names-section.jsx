@@ -8,6 +8,7 @@ class StockBlock extends React.Component {
 
 	handleClick(e) {
 		app.delStockName(this.props.name);
+		this.props.update(); // Re-render parent
 	}
 
 	render() {
@@ -46,7 +47,10 @@ class StockAddForm extends React.Component {
     var self = this;
     app.addStockName(this.state.code, function(err) {
       if (err) self.setState({isError: true});
-      else self.setState({ code: '' });
+      else {
+      	self.props.update(); // Re-render parent
+      	self.setState({ code: '' });
+      }
     });
   }
 
@@ -85,23 +89,30 @@ class StockNamesSection extends React.Component {
   constructor(props) {
     super(props);
 
+    this.update = this.update.bind(this);
+
     this.state = {
     	names: app.getStockNames()
     };
+  }
+
+  update() {
+  	// setState will set off a re-render
+  	this.setState({ names: app.getStockNames() });
   }
 
   render() {
 
 		var stockNameRows = [];
 		this.state.names.forEach((name) => {
-			stockNameRows.push(<StockBlock name={name} />);
+			stockNameRows.push(<StockBlock name={name} update={this.update} />);
 		});
 
   	return (
   		<div>
 	      <div className="col-md-4 col-sm-6 stock-block stock-new">
 	        <label>Add Stock Code</label>
-	        <StockAddForm />
+	        <StockAddForm update={this.update} />
 	      </div>
 	      {stockNameRows}
 	    </div>
