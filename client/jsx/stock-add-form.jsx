@@ -12,7 +12,7 @@ class ReactStockAddForm extends React.Component {
     this.state = {
       code: '',
       isError: false
-    }
+    };
   }
 
   //handleSubmit = (e, message) => {

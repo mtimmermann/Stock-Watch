@@ -15,7 +15,7 @@ var Highcharts = Highcharts || {};
             The function that is called after a service call
             error {object}: null if no error
    */
-  app.addName = function(stockName, callback) {
+  app.addStockName = function(stockName, callback) {
     stockName = stockName.toUpperCase();
 
     if (stockNames.indexOf(stockName) === -1) {
@@ -29,6 +29,13 @@ var Highcharts = Highcharts || {};
         }
       });
     }
+  };
+
+  /**
+   * Returns a list of stock code names displayed by the chart
+   */
+  app.getStockNames = function() {
+    return stockNames;
   };
 
   /**

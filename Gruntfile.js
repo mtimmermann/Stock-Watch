@@ -50,7 +50,18 @@ module.exports = function(grunt) {
     // http://chris.house/blog/grunt-configuration-for-react-browserify-babelify/
     // https://stackoverflow.com/questions/41067220/using-babel-grunt-to-work-with-es6-how-to-transform-require-statements
     // npm install --save-dev babel-cli babel-preset-es2015
+    // npm install --save-dev babel-cli babel-preset-react
     browserify: {
+      // main: {
+      //   options: {
+      //     transform: [['babelify', { presets: ['es2015', 'react'] }]],
+      //     browserifyOptions: {
+      //       debug: true
+      //     }
+      //   },
+      //   src: ['client/jsx/*.jsx'],
+      //   dest: 'public/js/templates/templates-jsx.compiled',
+      // }
       main: {
         options: {
           transform: [['babelify', { presets: ['es2015', 'react'] }]],
@@ -58,8 +69,10 @@ module.exports = function(grunt) {
             debug: true
           }
         },
-        src: ['client/jsx/*.jsx'],
-        dest: 'public/js/templates/templates-jsx.compiled',
+        files: [
+          {'public/js/templates/stock-add-form-jsx.compiled': ['client/jsx/stock-add-form.jsx']},
+          {'public/js/templates/stock-names-section-jsx.compiled': ['client/jsx/stock-names-section.jsx']}
+        ]
       }
     },
 
@@ -97,23 +110,37 @@ module.exports = function(grunt) {
           compress: false,
           preserveComments: 'all'
         },
-        files: [{
-          expand: false,
-          src: ['public/js/templates/templates-jsx.compiled'],
-          //dest: ''
-          dest: 'public/js/templates/templates.js'
-        }]
+        // files: [{
+        //   expand: false,
+        //   src: ['public/js/templates/templates-jsx.compiled'],
+        //   //dest: ''
+        //   dest: 'public/js/templates/templates.js'
+        // }]
+        files: [
+          {
+            src: ['public/js/templates/stock-add-form-jsx.compiled'],
+            dest: 'public/js/templates/stock-add-form.js'
+          },
+          {
+            src: ['public/js/templates/stock-names-section-jsx.compiled'],
+            dest: 'public/js/templates/stock-names-section.js'
+          }
+        ]
       },
       build_react_jsx: {
         options: {
           sourceMap: true
         },
-        files: [{
-          expand: false,
-          src: ['public/js/templates/templates-jsx.compiled'],
-          //dest: ''
-          dest: 'public/js/templates/templates.js'
-        }]
+        files: [
+          {
+            src: ['public/js/templates/stock-add-form-jsx.compiled'],
+            dest: 'public/js/templates/stock-add-form.js'
+          },
+          {
+            src: ['public/js/templates/stock-names-section-jsx.compiled'],
+            dest: 'public/js/templates/stock-names-section.js'
+          }
+        ]
       }
     },
 

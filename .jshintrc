@@ -1,7 +1,7 @@
 {
   "bitwise": true,
   "browser": true,
-  "curly": true,
+  "curly": false, // Allow oneline block statements without brackets
   "eqeqeq": true,
   "eqnull": true,
   "esnext": true,
