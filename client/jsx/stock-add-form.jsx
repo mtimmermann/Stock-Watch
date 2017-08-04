@@ -1,4 +1,6 @@
-var app = app || {};
+//var app = app || {};
+
+//require(['js/scripts'], function(app) {
 
 class ReactStockAddForm extends React.Component {
   constructor(props) {
@@ -21,7 +23,14 @@ class ReactStockAddForm extends React.Component {
     //   console.log('submit ->code: '+ this.state.code);
     //   this.setState({isError: true});
     // }
-    //app.addName(this.state.code);
+this.setState({isError: true});
+    if (app) {
+      app.addName(this.state.code);
+      app.init();
+      this.setState({ code: '' });
+    } else {
+      console.log('Error, app has not been defined');
+    }
   };
 
   //handleChange = (e) => {
@@ -58,6 +67,13 @@ class ReactStockAddForm extends React.Component {
 
 ReactDOM.render(<ReactStockAddForm />, document.querySelector('#stock-add-form'));
 
-console.log(window.location.pathname);
-console.log('app: '+ Object.keys(app));
-app.addName('test');
+//console.log('stock-add-form loaded');
+  //console.log('app: '+ Object.keys(app));
+  //app.addName('test')
+//});
+
+// ReactDOM.render(<ReactStockAddForm />, document.querySelector('#stock-add-form'));
+
+// console.log(window.location.pathname);
+// console.log('app: '+ Object.keys(app));
+// app.addName('test');

@@ -84,6 +84,12 @@ module.exports = function(grunt) {
         }
       },
 
+      // requirejs: {
+      //   files: {
+      //     'public/js/dependencies/require.min.js': ['bower_components/requirejs/require.js']
+      //   }
+      // },
+
       dev_react_jsx: {
         options: {
           beautify: true,
@@ -157,6 +163,24 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jshint', 'clean', 'copy', 'browserify', 'uglify:dev', 'uglify:dev_react_jsx', 'sass:dev']);
-  grunt.registerTask('build', ['jshint', 'clean', 'copy', 'browserify', 'uglify:build', 'uglify:build_react_jsx', 'sass:dev']);
+  grunt.registerTask('default', [
+    'jshint',
+    'clean',
+    'copy',
+    'browserify',           // Translate react .jsx files to js
+    'uglify:dev',           // Application js files, beutify and combine
+    //'uglify:requirejs',     // Minify requirejs
+    'uglify:dev_react_jsx', // Translated React .jsx->js files, beutify and combine
+    'sass:dev'              // Compile Sass styles
+  ]);
+  grunt.registerTask('build', [
+    'jshint',
+    'clean',
+    'copy',
+    'browserify',             // Translate react .jsx files to js
+    'uglify:build',           // Application js files, minimize
+    //'uglify:requirejs',       // Minify requirejs
+    'uglify:build_react_jsx', // Translate React .jsx->js files, minimize
+    'sass:dev'                // Compile and minify Sass styles
+  ]);
 };
