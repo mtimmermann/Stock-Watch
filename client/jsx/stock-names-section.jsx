@@ -39,11 +39,7 @@ class StockAddForm extends React.Component {
   //handleSubmit = (e, message) => {
   handleSubmit (e) {
     e.preventDefault();
-    
-    // if (this.state.code !== '') {
-    //   console.log('submit ->code: '+ this.state.code);
-    //   this.setState({isError: true});
-    // }
+
     var self = this;
     app.addStockName(this.state.code, function(err) {
       if (err) self.setState({isError: true});

@@ -70,7 +70,6 @@ module.exports = function(grunt) {
           }
         },
         files: [
-          {'public/js/templates/stock-add-form-jsx.compiled': ['client/jsx/stock-add-form.jsx']},
           {'public/js/templates/stock-names-section-jsx.compiled': ['client/jsx/stock-names-section.jsx']}
         ]
       }
@@ -118,10 +117,6 @@ module.exports = function(grunt) {
         // }]
         files: [
           {
-            src: ['public/js/templates/stock-add-form-jsx.compiled'],
-            dest: 'public/js/templates/stock-add-form.js'
-          },
-          {
             src: ['public/js/templates/stock-names-section-jsx.compiled'],
             dest: 'public/js/templates/stock-names-section.js'
           }
@@ -132,10 +127,6 @@ module.exports = function(grunt) {
           sourceMap: true
         },
         files: [
-          {
-            src: ['public/js/templates/stock-add-form-jsx.compiled'],
-            dest: 'public/js/templates/stock-add-form.js'
-          },
           {
             src: ['public/js/templates/stock-names-section-jsx.compiled'],
             dest: 'public/js/templates/stock-names-section.js'
