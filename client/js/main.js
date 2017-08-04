@@ -102,6 +102,8 @@ console.log('names: '+ names);
 }(jQuery, app));
 
 (function() {
+  app.renderStockAddForm();
   app.init();
   app.setHighChartTheme();
 })();
+

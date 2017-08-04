@@ -10,17 +10,20 @@ block content
     div(class='row')
       div(class='stocks-container')
         - var classes = ['col-md-4', 'col-sm-6', 'stock-block', 'stock-new']
-        div(class=classes)
+        div(class=classes id='stock-add-form')
           label Add Stock Code
+
+
           //- form(novalidate onsubmit='return false;')
           //- form(novalidate)
-          div(class='input-group')
-            input(type='text' class='form-control' placeholder='Stock Code')
-            span(class='input-group-btn')
-              - var classes = ['btn', 'btn-success', type='submit']
-              //- button(class=classes type='submit' onlick='alert("test");app.addName();') Add
-              button(class=classes type='button' onlick='alert("test");app.addName();') Add
+          //- div(class='input-group')
+          //-  input(type='text' class='form-control' placeholder='Stock Code')
+          //-  span(class='input-group-btn')
+          //-    - var classes = ['btn', 'btn-success']
+          //-    //- button(class=classes type='submit' onlick='alert("test");app.addName();') Add
+          //-    button(class=classes type='button' onlick='alert("test");app.addName();') Add
 
   script(src='/js/dependencies/highcharts/highstock.js')
   script(src='/js/dependencies/highcharts/exporting.js')
+  script(src='/js/templates/templates.js')
   script(src='/js/scripts.js')
