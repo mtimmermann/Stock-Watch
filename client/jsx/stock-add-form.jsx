@@ -23,14 +23,11 @@ class ReactStockAddForm extends React.Component {
     //   console.log('submit ->code: '+ this.state.code);
     //   this.setState({isError: true});
     // }
-this.setState({isError: true});
-    if (app) {
-      app.addName(this.state.code);
-      app.init();
-      this.setState({ code: '' });
-    } else {
-      console.log('Error, app has not been defined');
-    }
+    var self = this;
+    app.addName(this.state.code, function(err) {
+      if (err) self.setState({isError: true});
+      else self.setState({ code: '' });
+    });
   };
 
   //handleChange = (e) => {

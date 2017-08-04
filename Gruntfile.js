@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     'bower_components/react/react-dom.min.js'
   ];
 
-  var jsApp = ['client/js/*.js'];
+  var jsApp = ['client/js/*.js', 'client/js/services/*.js'];
 
   grunt.initConfig({
     //pkg: grunt.file.readJSON('package.json'),
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
           preserveComments: 'all'
         },
         files: {
-          'public/js/scripts.js': ['client/js/*.js']
+          'public/js/scripts.js': [jsApp]
         }
       },
       build: {
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
           sourceMap: true
         },
         files: {
-          'public/js/scripts.js': ['client/js/*.js']
+          'public/js/scripts.js': [jsApp]
         }
       },
 
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
 
     watch: {
       js: {
-        files: ['client/js/*.js'],
+        files: [jsApp],
         tasks: ['uglify:dev']
       },
       css: {

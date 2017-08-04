@@ -6,13 +6,28 @@ var Highcharts = Highcharts || {};
 (function ($) {
 
   var seriesOptions = null,
-      names = ['MSFT', 'AAPL', 'GOOG'];
+      stockNames = ['MSFT', 'AAPL', 'GOOG'];
 
-  app.addName = function(name) {
-console.log('name: '+ name);
-    if (names.indexOf(name) === -1) {
-      names.push(name);
-console.log('names: '+ names);
+  /**
+   * Adds a stock code name to the stock watch chart
+   * @param {string} name The stock code name (e.g. 'MSFT')
+   * @param {function} callback (err) 
+            The function that is called after a service call
+            error {object}: null if no error
+   */
+  app.addName = function(stockName, callback) {
+    stockName = stockName.toUpperCase();
+
+    if (stockNames.indexOf(stockName) === -1) {
+      app.stockService.getStock1(stockName, function(err, data) {
+        if (err) {
+          callback(err);
+        } else {
+          stockNames.push(stockName);
+          app.init();
+          callback(null);
+        }
+      });
     }
   };
 
@@ -82,7 +97,7 @@ console.log('names: '+ names);
     seriesOptions = [];
 
     var nameCount = 0;
-    $.each(names, function (i, name) {
+    $.each(stockNames, function (i, name) {
       getData(name, function(err) {
         nameCount += 1;
         if (err) {  
@@ -92,7 +107,7 @@ console.log('names: '+ names);
         }
 
         // Create chart after all async calls have completed
-        if (nameCount === names.length) {
+        if (nameCount === stockNames.length) {
           createChart();
         }
       });
