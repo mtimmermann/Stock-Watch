@@ -215,9 +215,9 @@ Highcharts.theme = {
 
 (function ($) {
 
-	app.setHighChartTheme = function() {
-		// Apply the theme
-		Highcharts.setOptions(Highcharts.theme);
-	};
+   app.setHighChartTheme = function() {
+      // Apply the theme
+      Highcharts.setOptions(Highcharts.theme);
+   };
 
 }(jQuery, app));
