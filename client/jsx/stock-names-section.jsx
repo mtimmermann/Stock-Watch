@@ -2,12 +2,21 @@
 class StockBlock extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick(e) {
+		console.log('close');
 	}
 
 	render() {
 		return (
 			<div className="col-md-4 col-sm-6 stock-block">
-				<h3>{this.props.name}</h3>
+				<h3>
+					{this.props.name}
+					<button type="button" className="close" onClick={this.handleClick}>x</button>
+				</h3>
 			</div>
 		);
 	}
