@@ -17,10 +17,11 @@ class ReactStockAddForm extends React.Component {
   handleSubmit (e) {
     e.preventDefault();
     
-    if (this.state.code !== '') {
-      console.log('submit ->code: '+ this.state.code);
-      this.setState({isError: true});
-    }
+    // if (this.state.code !== '') {
+    //   console.log('submit ->code: '+ this.state.code);
+    //   this.setState({isError: true});
+    // }
+    //app.addName(this.state.code);
   };
 
   //handleChange = (e) => {
@@ -56,3 +57,7 @@ class ReactStockAddForm extends React.Component {
 
 
 ReactDOM.render(<ReactStockAddForm />, document.querySelector('#stock-add-form'));
+
+console.log(window.location.pathname);
+console.log('app: '+ Object.keys(app));
+app.addName('test');
