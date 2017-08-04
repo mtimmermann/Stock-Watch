@@ -31,6 +31,15 @@ var Highcharts = Highcharts || {};
     }
   };
 
+  app.delStockName = function(stockName) {
+    console.log('delStockName');
+    var index = stockNames.indexOf(stockName);
+    if (index > -1) {
+      stockNames.splice(index, 1);
+      app.init();
+    }
+  };
+
   /**
    * Returns a list of stock code names displayed by the chart
    */

@@ -7,7 +7,7 @@ class StockBlock extends React.Component {
 	}
 
 	handleClick(e) {
-		console.log('close');
+		app.delStockName(this.props.name);
 	}
 
 	render() {
