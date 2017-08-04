@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       ]
     },
 
-    clean: ['public/css', 'public/js', 'public/templates'],
+    clean: ['public/css', 'public/js', 'public/js/templates'],
 
     copy: {
       //main: {
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
           }
         },
         src: ['client/jsx/*.jsx'],
-        dest: 'public/templates/templates-jsx.compiled',
+        dest: 'public/js/templates/templates-jsx.compiled',
       }
     },
 
@@ -93,9 +93,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: false,
-          src: ['public/templates/templates-jsx.compiled'],
+          src: ['public/js/templates/templates-jsx.compiled'],
           //dest: ''
-          dest: 'public/templates/templates.js'
+          dest: 'public/js/templates/templates.js'
         }]
       },
       build_react_jsx: {
@@ -104,9 +104,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: false,
-          src: ['public/templates/templates-jsx.compiled'],
+          src: ['public/js/templates/templates-jsx.compiled'],
           //dest: ''
-          dest: 'public/templates/templates.js'
+          dest: 'public/js/templates/templates.js'
         }]
       }
     },

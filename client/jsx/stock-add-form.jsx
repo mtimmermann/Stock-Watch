@@ -20,8 +20,5 @@ class ReactStockAddForm extends React.Component {
   }
 };
 
-(function ($) {
-  app.renderStockAddForm = function() {
-    ReactDOM.render(<ReactStockAddForm />, document.querySelector('#stock-add-form'));
-  };
-}(jQuery, app));
+
+ReactDOM.render(<ReactStockAddForm />, document.querySelector('#stock-add-form'));
