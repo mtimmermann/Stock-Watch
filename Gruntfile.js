@@ -143,7 +143,7 @@ module.exports = function(grunt) {
       },
       jsx: {
         files: ['client/jsx/*.jsx'],
-        tasks: ['browserify:build', 'uglify:dev_react_jsx']
+        tasks: ['browserify', 'uglify:dev_react_jsx']
       }
     }
 

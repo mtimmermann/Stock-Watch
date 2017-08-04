@@ -4,18 +4,52 @@ class ReactStockAddForm extends React.Component {
   constructor(props) {
     super(props);
 
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.state = {
       code: '',
-      isError: false,
-      email: '',
-      subject: '',
-      message: ''
+      isError: false
     }
   }
 
+  //handleSubmit = (e, message) => {
+  handleSubmit (e) {
+    e.preventDefault();
+    
+    if (this.state.code !== '') {
+      console.log('submit ->code: '+ this.state.code);
+      this.setState({isError: true});
+    }
+  };
+
+  //handleChange = (e) => {
+  handleChange(e) {
+    this.state.isError = false;
+    let newState = {};
+    newState[e.target.name] = e.target.value;
+    this.setState(newState);
+  };
+
   render() {
     return (
-      <h1>Testing 123.</h1>
+      <div>
+        <label>Add Stock Code</label>
+        <form onSubmit={this.handleSubmit} novalidate>
+          <div className="input-group">
+            <input name="code" type="text" className="form-control" placeholder="Stock Code"
+              onChange={this.handleChange} value={this.state.code} />
+            <span className="input-group-btn">
+              <button className="btn btn-success" type="submit" disabled={!this.state.code}>Add</button>
+            </span>
+          </div>
+        </form>
+        {this.state.isError ? (
+          <div className="error">Could not find stock code</div>
+        ) : (
+          <div></div>
+        )}
+      </div>
     );
   }
 };
