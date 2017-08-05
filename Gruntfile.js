@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(grunt) {
-  //require('load-grunt-tasks')(grunt); // load all tasks
+  require('load-grunt-tasks')(grunt); // load all tasks
   //require('time-grunt')(grunt); // Time grunt process
 
   var jsLibs = [
@@ -173,7 +173,7 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-wiredep');
+  //grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
