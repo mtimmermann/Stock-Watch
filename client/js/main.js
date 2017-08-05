@@ -33,7 +33,7 @@ var Highcharts = Highcharts || {};
           callback(err);
         } else {
           stockList.push({ stockCode: stockCode, companyName: data.companyName });
-          app.init();
+          createChart();
           callback(null);
         }
       });
