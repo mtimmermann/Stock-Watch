@@ -159,7 +159,7 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: [jsApp],
-        tasks: ['uglify:dev']
+        tasks: ['jshint', 'uglify:dev']
       },
       css: {
         files: ['client/scss/*.scss'],
