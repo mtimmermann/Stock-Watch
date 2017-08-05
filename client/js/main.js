@@ -8,8 +8,9 @@ var Highcharts = Highcharts || {};
   var seriesOptions = null,
       stockNames = ['MSFT', 'AAPL', 'GOOG', 'IBM'];
 
-  var svcGetStocks = app.stockService.getStocks1;                 // From Quandl (static)
-  //var svcGetStocks = app.stockService.getStocks;                  // From Quandl
+  var svcGetStocks = app.stockService.getStocks;
+  //var svcGetStocks = app.stockService.getStocks1;                 // From Quandl (static)
+  //var svcGetStocks = app.stockService.getStocks2;                 // From Quandl
   //var svcGetStocks = app.stockService.getStockDataFromHighCharts; // From highcharts
 
 
