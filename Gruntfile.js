@@ -173,7 +173,7 @@ module.exports = function(grunt) {
 
   });
 
-  //grunt.loadNpmTasks('grunt-wiredep');
+  grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
