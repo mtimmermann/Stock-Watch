@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     'bower_components/react/react-dom.min.js'
   ];
 
-  var jsApp = ['client/js/*.js', 'client/js/services/*.js'];
+  var jsApp = ['client/js/services/*.js', 'client/js/*.js'];
 
   grunt.initConfig({
     //pkg: grunt.file.readJSON('package.json'),

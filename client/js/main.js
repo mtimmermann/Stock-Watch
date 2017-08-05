@@ -6,7 +6,12 @@ var Highcharts = Highcharts || {};
 (function ($) {
 
   var seriesOptions = null,
-      stockNames = ['MSFT', 'AAPL', 'GOOG'];
+      stockNames = ['MSFT', 'AAPL', 'GOOG', 'IBM'];
+
+  var svcGetStocks = app.stockService.getStocks1;                 // From Quandl (static)
+  //var svcGetStocks = app.stockService.getStocks;                  // From Quandl
+  //var svcGetStocks = app.stockService.getStockDataFromHighCharts; // From highcharts
+
 
   /**
    * Adds a stock code name to the stock watch chart
@@ -19,7 +24,8 @@ var Highcharts = Highcharts || {};
     stockName = stockName.toUpperCase();
 
     if (stockNames.indexOf(stockName) === -1) {
-      app.stockService.getStock1(stockName, function(err, data) {
+      //app.stockService.getStocks(stockName, function(err, data) {
+      svcGetStocks(stockName, function(err, data) {
         if (err) {
           callback(err);
         } else {
@@ -89,22 +95,20 @@ var Highcharts = Highcharts || {};
     });
   }
 
-  function getData(name, callback) {
+  function getData(stockName, callback) {
 
-    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' +
-          name.toLowerCase() + '-c.json&callback=?'
-      ).done(function(data) {
-
+    svcGetStocks(stockName, function(err, dataset) {
+      if (err) callback(err);
+      else {
+        //console.log(name +'\r\n'+ JSON.stringify(dataset, null, '') +'\r\n');
         seriesOptions.push({
-          name: name,
-          data: data
+          name: dataset.stockCode,
+          data: dataset.data
         });
 
         callback(null);
-      })
-      .fail(function(jqxhr, textStatus, error) {
-        callback(error);
-      });
+      }
+    });
   }
 
   app.init = function () {
