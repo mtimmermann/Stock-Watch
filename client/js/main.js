@@ -33,11 +33,9 @@ var Highcharts = Highcharts || {};
           callback(err);
         } else {
           stockList.push({ stockCode: stockCode, companyName: dataset.companyName });
-          seriesOptions.push({
-            name: dataset.stockCode,
-            data: dataset.data
-          });
-          createChart();
+          var series = { name: dataset.stockCode, data: dataset.data };
+          seriesOptions.push(series);
+          chart.addSeries(series);
           callback(null);
         }
       });
@@ -49,10 +47,18 @@ var Highcharts = Highcharts || {};
    * @param {string} stockCode name of the stock code (e.g. 'MSFT')
    */
   app.delStockItem = function(stockCode) {
-    var items = $.grep(stockList, function(obj) { return stockCode !== obj.stockCode });
-    if (items.length !== stockList.length) {
+    var items = $.grep(stockList, function(obj) { return obj.stockCode !== stockCode; });
+    var sOpts = $.grep(seriesOptions, function(obj) { return obj.name !== stockCode; });
+
+    if (items.length !== stockList.length && sOpts.length !== seriesOptions.length) {
       stockList = items;
-      app.init();
+      seriesOptions = sOpts;
+
+      var idx = null;
+      chart.series.forEach(function(s, i) {
+        if (s.name === stockCode) idx = i;
+      });
+      if (idx >= 0) chart.series[idx].remove();
     }
   };
 
@@ -63,6 +69,8 @@ var Highcharts = Highcharts || {};
   app.getStockList = function() {
     return stockList;
   };
+
+  //function getChartSeriesByName(name) {}
 
   /**
    * Create the chart when all data is loaded
