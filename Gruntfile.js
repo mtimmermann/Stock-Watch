@@ -173,7 +173,6 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-hook'); // For load-grunt-tasks
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
