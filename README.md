@@ -1,9 +1,14 @@
 
 
-DEBUG=stock-watch:* npm start
+```
+npm install
+bower install
 
-Debug w/ nodemon listener
-DEBUG=stock-watch:* npm run devstart
+# Run the app
+./1.run-debug.sh
+```
+
+or
 
 ```
 node install
@@ -11,6 +16,14 @@ bower install
 grunt
 DEBUG=stock-watch:* npm run devstart
 ```
+
+
+
+DEBUG=stock-watch:* npm start
+
+Debug w/ nodemon listener
+DEBUG=stock-watch:* npm run devstart
+
 
 https://www.highcharts.com/stock/demo/compare
 http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/demo/compare/

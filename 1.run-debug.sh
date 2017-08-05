@@ -6,7 +6,8 @@
 grunt
 
 # Run Debug w/ nodemon listener
-DEBUG=stock-watch:* npm run devstart
+# Must add the Qundl api key before running.
+QUANDL_API_KEY= DEBUG=stock-watch:* npm run devstart
 
 #grunt watch
 
