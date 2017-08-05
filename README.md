@@ -5,6 +5,7 @@ npm install
 bower install
 
 # Run the app
+# Add a Qunadl api key to QUANDL_API_KEY= in 1.run-debug.sh
 ./1.run-debug.sh
 ```
 
