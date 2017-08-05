@@ -24,7 +24,7 @@ exports.getStocks = function(req, res, next) {
 function parseQuandlData(raw) {
   var dataset = {
     stockCode: raw.dataset.dataset_code,
-    copanyName: raw.dataset.name,
+    companyName: raw.dataset.name,
     data: []
   };
 

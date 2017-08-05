@@ -20,18 +20,16 @@ app.stockService = app.stockService || {};
 
     $.getJSON('/api/stocks/'+ stockName
       ).done(function(data) {
-        //console.log(stockName +'\r\n'+ JSON.stringify(data, null, '') +'\r\n');
         return callback(null, data);
       }).fail(function(jqxhr, textStatus, error) {
-        //console.log('error: '+ error);
-        return callback(null);
+        return callback(error);
       });
   };
 
   function parseQuandlData(raw) {
     var dataset = {
       stockCode: raw.dataset.dataset_code,
-      copanyName: raw.dataset.name,
+      companyName: raw.dataset.name,
       data: []
     };
 
@@ -128,7 +126,7 @@ app.stockService = app.stockService || {};
       ).done(function(data) {
         var dataset = {
           stockCode: stockName.toUpperCase(),
-          copanyName: '',
+          companyName: '',
           data: data
         };
         callback(null, dataset);

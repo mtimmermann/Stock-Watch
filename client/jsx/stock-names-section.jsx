@@ -7,7 +7,7 @@ class StockBlock extends React.Component {
   }
 
   handleClick(e) {
-    app.delStockName(this.props.name);
+    app.delStockItem(this.props.code);
     this.props.update(); // Re-render parent
   }
 
@@ -15,9 +15,10 @@ class StockBlock extends React.Component {
     return (
       <div className="col-md-4 col-sm-6 stock-block">
         <h3>
-          {this.props.name}
+          {this.props.code}
           <button type="button" className="close" onClick={this.handleClick}>x</button>
         </h3>
+        <span>{this.props.companyName}</span>
       </div>
     );
   }
@@ -41,7 +42,7 @@ class StockAddForm extends React.Component {
     e.preventDefault();
 
     var self = this;
-    app.addStockName(this.state.code, function(err) {
+    app.addStockItem(this.state.code, function(err) {
       if (err) self.setState({isError: true});
       else {
         self.props.update(); // Re-render parent
@@ -88,20 +89,20 @@ class StockNamesSection extends React.Component {
     this.update = this.update.bind(this);
 
     this.state = {
-      names: app.getStockNames()
+      stockList: app.getStockList()
     };
   }
 
   update() {
     // setState will set off a re-render
-    this.setState({ names: app.getStockNames() });
+    this.setState({ stockList: app.getStockList() });
   }
 
   render() {
 
-    var stockNameRows = [];
-    this.state.names.forEach((name) => {
-      stockNameRows.push(<StockBlock name={name} update={this.update} />);
+    var stockListRows = [];
+    this.state.stockList.forEach((item) => {
+      stockListRows.push(<StockBlock code={item.stockCode} companyName={item.companyName} update={this.update} />);
     });
 
     return (
@@ -110,7 +111,7 @@ class StockNamesSection extends React.Component {
           <label>Add Stock Code</label>
           <StockAddForm update={this.update} />
         </div>
-        {stockNameRows}
+        {stockListRows}
       </div>
     );
   }
