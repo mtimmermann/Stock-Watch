@@ -12,7 +12,7 @@ exports.getStocks = function(req, res, next) {
   getStocksData(req.params.stockCode, function(err, quandl_error, dataset) {
     if (err) return next(err);
     else if (quandl_error) {
-      return res.status(409).send(quandl_error);   
+      return res.status(409).send(quandl_error);
     }
 
     res.setHeader('Content-Type', 'application/json');
@@ -46,7 +46,7 @@ function getStocksData(stockCode, callback) {
   var date = now.getDate();
 
   var url = 'https://www.quandl.com/api/v3/datasets/WIKI/'+ stockCode +'.json' +
-    '?start_date='+ (year - 1) +'-'+ month +'-'+ date +'&order=asc'+
+    '?start_date='+ (year - 1) +'-'+ (month -1) +'-'+ date +'&order=asc'+
     '&api_key='+ process.env.QUANDL_API_KEY;
 
   https.get(url, (res) => {
