@@ -9,10 +9,13 @@ exports.getStocks = function(req, res, next) {
     return res.status(409).send('QUANDL_API_KEY environement variable is required, set with node env variable');
   }
 
-  getStocksData(req.params.stockCode, function(err, quandl_error, dataset) {
+  getStocksData(getQuandlUrl(req.params.stockCode), function(err, dataset) {
     if (err) return next(err);
-    else if (quandl_error) {
-      return res.status(409).send(quandl_error);
+    else if (!dataset) {
+      return res.status(500).send('Error, no data found');
+    } else if (dataset.quandl_error) {
+      var err = dataset.quandl_error.message || 'Quandl error';
+      return res.status(409).send(err);
     }
 
     res.setHeader('Content-Type', 'application/json');
@@ -20,6 +23,17 @@ exports.getStocks = function(req, res, next) {
     return res.json(dataset);
   });
 };
+
+function getQuandlUrl (stockCode) {
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth() + 1;
+  var date = now.getDate();
+
+  return 'https://www.quandl.com/api/v3/datasets/WIKI/'+ stockCode +'.json' +
+    '?start_date='+ (year - 1) +'-'+ (month -1) +'-'+ date +'&order=asc'+
+    '&api_key='+ process.env.QUANDL_API_KEY;
+}
 
 function parseQuandlData(raw) {
   var dataset = {
@@ -38,16 +52,7 @@ function parseQuandlData(raw) {
   return dataset;
 }
 
-function getStocksData(stockCode, callback) {
-
-  var now = new Date();
-  var year = now.getFullYear();
-  var month = now.getMonth() + 1;
-  var date = now.getDate();
-
-  var url = 'https://www.quandl.com/api/v3/datasets/WIKI/'+ stockCode +'.json' +
-    '?start_date='+ (year - 1) +'-'+ (month -1) +'-'+ date +'&order=asc'+
-    '&api_key='+ process.env.QUANDL_API_KEY;
+function getStocksData(url, callback) {
 
   https.get(url, (res) => {
     //console.log('statusCode:', res.statusCode);
@@ -59,13 +64,7 @@ function getStocksData(stockCode, callback) {
 
     res.on('end', function() {
       data = JSON.parse(data);
-
-      if (!data || data.quandl_error) {
-        var err = data.quandl_error.message || 'Quandl error';
-        callback(null, err);
-      } else {
-        callback(null, null, data);
-      }
+      callback(null, data);
     });
 
     res.resume();
@@ -73,5 +72,5 @@ function getStocksData(stockCode, callback) {
   }).on('error', (e) => {
     callback(e);
   });
-
 }
+
