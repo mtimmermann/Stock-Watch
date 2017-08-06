@@ -433,7 +433,7 @@ var Highcharts = Highcharts || {};
             chart.series.forEach(function(s, i) {
                 if (s.name === stockCode) idx = i;
             });
-            if (idx >= 0) chart.series[idx].remove();
+            if (idx >= 0 && chart.series[idx]) chart.series[idx].remove();
         }
     };
     app.getStockList = function() {
