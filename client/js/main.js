@@ -27,8 +27,10 @@ var Highcharts = Highcharts || {};
 
       svcGetStocks(stockCode, function(err, dataset) {
         if (err) {
+          console.log(stockCode + ' error '+ err);
           callback(err);
         } else {
+          console.log(stockCode + ' Success');
           stockList.push({ stockCode: stockCode, companyName: dataset.companyName });
           chart.addSeries({ name: dataset.stockCode, data: dataset.data });
           if (hasLocalStorage) localStorage.setItem('stock-watch-list', JSON.stringify(stockList));

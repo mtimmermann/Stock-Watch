@@ -406,8 +406,10 @@ var Highcharts = Highcharts || {};
         if (item.length === 0) {
             svcGetStocks(stockCode, function(err, dataset) {
                 if (err) {
+                    console.log(stockCode + " error " + err);
                     callback(err);
                 } else {
+                    console.log(stockCode + " Success");
                     stockList.push({
                         stockCode: stockCode,
                         companyName: dataset.companyName
