@@ -26,6 +26,13 @@ app.stockService = app.stockService || {};
       });
   };
 
+
+
+  // --------------------------------------------------------------------------------------
+  //var svcGetStocks = app.stockService.getStocks1;                 // From Quandl (static)
+  //var svcGetStocks = app.stockService.getStocks2;                 // From Quandl
+  //var svcGetStocks = app.stockService.getStockDataFromHighCharts; // From highcharts
+
   function parseQuandlData(raw) {
     var dataset = {
       stockCode: raw.dataset.dataset_code,

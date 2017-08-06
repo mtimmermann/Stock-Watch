@@ -7,14 +7,10 @@ var Highcharts = Highcharts || {};
 
   var seriesOptions = null,
       stockList = [], // e.g. { stockCode: 'GOOG', companyName 'Alphabet Inc (GOOG)' }
-      //stockList = [{"stockCode":"AAPL","companyName":"Apple Inc (AAPL) Prices, Dividends, Splits and Trading Volume"},{"stockCode":"GOOG","companyName":"Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume"}],
-      chart = null;
+      chart = null,
+      hasLocalStorage = false;
 
   var svcGetStocks = app.stockService.getStocks;
-  //var svcGetStocks = app.stockService.getStocks1;                 // From Quandl (static)
-  //var svcGetStocks = app.stockService.getStocks2;                 // From Quandl
-  //var svcGetStocks = app.stockService.getStockDataFromHighCharts; // From highcharts
-
 
   /**
    * Adds a stock item to the stock watch chart
@@ -35,6 +31,7 @@ var Highcharts = Highcharts || {};
         } else {
           stockList.push({ stockCode: stockCode, companyName: dataset.companyName });
           chart.addSeries({ name: dataset.stockCode, data: dataset.data });
+          if (hasLocalStorage) localStorage.setItem('stock-watch-list', JSON.stringify(stockList));
           callback(null);
         }
       });
@@ -49,6 +46,7 @@ var Highcharts = Highcharts || {};
     var items = $.grep(stockList, function(obj) { return obj.stockCode !== stockCode; });
     if (items.length !== stockList.length) {
       stockList = items;
+      if (hasLocalStorage) localStorage.setItem('stock-watch-list', JSON.stringify(stockList));
 
       var idx = null;
       chart.series.forEach(function(s, i) {
@@ -122,6 +120,16 @@ var Highcharts = Highcharts || {};
    * Initialize the app data and app stock chart
    */
   app.init = function () {
+
+    if (typeof(Storage) !== 'undefined') {
+      hasLocalStorage = true;
+      try {
+        stockList = JSON.parse(localStorage.getItem('stock-watch-list')) || [];
+      } catch (err) {
+        stockList = [];
+        localStorage.setItem('stock-watch-list', JSON.stringify(stockList));
+      }
+    }
 
     // Initialize empty chart prior to loading any data.
     //  This will allow a chart view while any data is in the
