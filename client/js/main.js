@@ -11,6 +11,7 @@ var Highcharts = Highcharts || {};
       hasLocalStorage = false;
 
   var svcGetStocks = app.stockService.getStocks;
+  //var svcGetStocks = app.stockService.getStocksCanned; // Canned service responses
 
   /**
    * Adds a stock item to the stock watch chart
