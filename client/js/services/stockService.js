@@ -69,6 +69,6 @@ app.stockService = app.stockService || {};
   //     });
   // };
 
-}(jQuery, app));
+}(jQuery));
 
 

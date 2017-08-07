@@ -24,7 +24,7 @@ app.stockService = app.stockService || {};
             return callback(error);
         });
     };
-})(jQuery, app);
+})(jQuery);
 
 "use strict";
 
@@ -363,7 +363,7 @@ var Highcharts = Highcharts || {};
             });
         });
     };
-})(jQuery, app);
+})(jQuery);
 
 (function() {
     app.init();

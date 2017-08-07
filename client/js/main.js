@@ -169,7 +169,7 @@ var Highcharts = Highcharts || {};
     });
   };
 
-}(jQuery, app));
+}(jQuery));
 
 (function() {
   app.init();
