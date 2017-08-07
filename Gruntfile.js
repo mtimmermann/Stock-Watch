@@ -49,8 +49,8 @@ module.exports = function(grunt) {
     // Transform react .jsx files to js
     // http://chris.house/blog/grunt-configuration-for-react-browserify-babelify/
     // https://stackoverflow.com/questions/41067220/using-babel-grunt-to-work-with-es6-how-to-transform-require-statements
-    // npm install --save-dev babel-cli babel-preset-es2015
-    // npm install --save-dev babel-cli babel-preset-react
+    // npm install --save-dev babelify
+    // npm install --save-dev babel-cli babel-preset-es2015 babel-preset-react
     browserify: {
       // main: {
       //   options: {
