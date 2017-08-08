@@ -16,9 +16,9 @@ var Highcharts = Highcharts || {};
   /**
    * Adds a stock item to the stock watch chart
    * @param {string} stockCode The stock code name (e.g. 'MSFT')
-   * @param {function} callback (err) 
+   * @param {function} callback (error) 
             The function that is called after a service call
-            error {object}: null if no error
+            {object} error null if no error
    */
   app.addStockItem = function(stockCode, callback) {
     stockCode = stockCode.toUpperCase();
