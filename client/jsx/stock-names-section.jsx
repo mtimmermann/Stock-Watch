@@ -65,7 +65,7 @@ class StockAddForm extends React.Component {
         <form onSubmit={this.handleSubmit} novalidate>
           <div className="input-group">
             <input name="code" type="text" className="form-control" placeholder="Stock Code"
-              onChange={this.handleChange} value={this.state.code} />
+              onChange={this.handleChange} value={this.state.code} autoComplete="off" />
             <span className="input-group-btn">
               <button className="btn btn-success" type="submit" disabled={!this.state.code}>Add</button>
             </span>
