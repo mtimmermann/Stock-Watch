@@ -1,5 +1,29 @@
+### Stock Watch
+Watch and compare stocks over the past years data to current day.
 
+----
 
+##### Server
+* Node.js
+* Express 4
+
+##### Client JS
+* React 15.6
+* JQuery 3.2.1
+  * JQuery Slim-Scroll plugin
+  * JQuery Timeago plugin
+* PubSub-JS
+
+##### Client Style
+* Bootstrap-Sass 3.3.7
+
+----
+##### Required
+* An api key from Quandl is required for api stock data. The api key is free from [Quandl](https://www.quandl.com/tools/api)
+
+----
+
+##### Run
 ```
 npm install
 bower install
@@ -12,41 +36,10 @@ bower install
 or
 
 ```
-node install
+npm install
 bower install
 grunt
-DEBUG=stock-watch:* npm run devstart
+QUANDL_API_KEY= npm run devstart
 ```
 
-
-
-DEBUG=stock-watch:* npm start
-
-Debug w/ nodemon listener
-DEBUG=stock-watch:* npm run devstart
-
-
-https://www.highcharts.com/stock/demo/compare
-http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/demo/compare/
-
-
-
-https://www.quandl.com/tools/api
-
-https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?start_date=1985-05-01&end_date=1997-07-01&order=asc&column_index=4&collapse=quarterly&transformation=rdiff
-
-
-https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?start_date=2017-01-01&end_date=2017-08-04&order=asc&column_index=4&collapse=quarterly&transformation=rdiff
-
-Basic
-https://www.quandl.com/api/v3/datasets/OPEC/ORB.json
-
-
-https://www.quandl.com/api/v3/datasets/AAPL/ORB.json
-?start_date=2017-01
-
-https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?api_key=YOURAPIKEY
-
-
-https://github.com/jsdoc3/jsdoc/blob/master/jsdoc.js
-
+[Demo on Heroku](https://stock-watch-mtimmer.herokuapp.com/)
