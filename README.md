@@ -9,10 +9,8 @@ Watch and compare stocks over the past years data to current day.
 
 ##### Client JS
 * React 15.6
+* Highcharts Highstock library
 * JQuery 3.2.1
-  * JQuery Slim-Scroll plugin
-  * JQuery Timeago plugin
-* PubSub-JS
 
 ##### Client Style
 * Bootstrap-Sass 3.3.7
