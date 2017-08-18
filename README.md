@@ -1,5 +1,5 @@
 ### Stock Watch
-Watch and compare stocks over the past years data to current day.
+Watch and compare stocks over the past year worth of data to current day.
 
 ----
 
