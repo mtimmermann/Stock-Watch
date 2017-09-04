@@ -41,3 +41,10 @@ QUANDL_API_KEY= npm run devstart
 ```
 
 [Demo on Heroku](https://stock-watch-mtimmer.herokuapp.com/)
+
+![alt-text](https://raw.githubusercontent.com/mtimmermann/Stock-Watch/master/screenshot-stocks.png "Stock Watch")
+
+----
+
+## License
+[MIT](LICENSE)
